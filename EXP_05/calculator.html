@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP_05_activity02_22UAI047</title>
+    <style>
+        body {
+            background : url('design3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+        }
+        h1{
+            color: aliceblue;
+        }
+        .container {
+            width: 400px;
+            margin-top: 150px;
+            padding: 30px 30px;
+            text-align: center;
+
+            /* border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.18); */
+            box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37); 
+
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 20px;
+
+        }
+
+        #num1,
+        #num2,
+        #result {
+            text-align: center;
+            border-radius: 10px 0px 10px 0px;
+            width: 200px;
+            margin: 5px;
+            height: 20px;
+        }
+
+        .button button {
+            background-color: rgb(245, 220, 243);
+            margin-top: 15px;
+            border-radius: 5px;
+            padding: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Courier, monospace;
+        }
+
+        .button button:hover {
+            background-color: bisque;
+            color: rgb(18, 18, 43);
+
+        }
+
+        #clear {
+            background-color: aliceblue;
+        }
+
+        .container:hover{
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculator : </h1>
+        <div class="box">
+            <textarea id="num1" placeholder="enter num 1"></textarea>
+            <textarea id="num2" placeholder="enter num 2"></textarea>
+            <textarea id="result" placeholder="result" readonly></textarea>
+        </div>
+
+        <div class="button">
+            <button id="add" onclick="cal('add')">addition</button>
+            <button id="sub" onclick="cal('sub')">substration</button>
+            <button id="multy" onclick="cal('multy')">Multiplication</button>
+            <button id="division" onclick="cal('division')">division</button><br>
+            <button id="clear" onclick="cal('clear')">clear</button>
+
+        </div>
+
+    </div>
+</body>
+<Script>
+    function cal(operation) {
+        const num1 = parseFloat(document.querySelector('#num1').value)
+        const num2 = parseFloat(document.querySelector('#num2').value)
+        let result
+
+        switch (operation) {
+            case 'add':
+                result = num1 + num2
+                break;
+            case 'sub':
+                result = num1 - num2
+                break;
+            case 'multy':
+                result = num1 * num2
+                break;
+            case 'division':
+                result = num1 / num2
+                break;
+            case 'clear':
+                result = null
+                break;
+            default:
+                break;
+        }
+
+        document.getElementById('result').value = result;
+
+        
+
+    }
+</Script>
+
+</html>
