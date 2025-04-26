@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Fetch</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- CSS Styling -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+        }
+
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #fetchDataBtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        #fetchDataBtn:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #result ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #result li {
+            background: #f1f1f1;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+        }
+
+        #result p {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Get User Data</h2>
+        <button id="fetchDataBtn">Fetch</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#fetchDataBtn").click(function () {
+                $.ajax({
+                    url: "user.php",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        let output = "<ul>";
+                        data.forEach(user => {
+                            output += `<li>${user.name} - ${user.email}</li>`;
+                        });
+                        output += "</ul>";
+                        $("#result").html(output);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", xhr.status, error);
+                        $("#result").html("<p>Failed to fetch data</p>");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
